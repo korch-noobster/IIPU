@@ -41,12 +41,14 @@ namespace USB
                     boxstring += line + "\t\t";
                     using (StreamReader sr2 = new StreamReader("TomeSize.txt", System.Text.Encoding.UTF8))
                     {
+
                         float left;
                         sr2.ReadLine();
                         line = sr2.ReadLine();
-                        temp = Convert.ToInt32(line);
+                        temp = Convert.ToInt32(line.Trim(' '));
                         temp /= 1048576;
                         left = temp;
+                        UsbBox.Invoke(new Action<string>((s) => UsbBox.Text = s), boxstring);
                         boxstring += temp.ToString() + "\t\t";
                         sr2.ReadLine();
                         line = sr2.ReadLine();
@@ -55,6 +57,7 @@ namespace USB
                         boxstring += temp.ToString() + "\t\t";
                         left -= temp;
                         boxstring += left.ToString() + "\t\t";
+                        UsbBox.Invoke(new Action<string>((s) => UsbBox.Text = s), boxstring);
                     }
                 }
             }
@@ -204,7 +207,7 @@ namespace USB
 
         private void button1_Click(object sender, EventArgs e)
         {
-          //  Eject(USBEject(Usb_eject.));
+          Eject(USBEject(Usb_eject.SelectedItem.ToString()));
         }
     }
 }
