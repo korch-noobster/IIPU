@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace USB.Properties
+namespace Getting_USB_Devices.Properties
 {
 
 

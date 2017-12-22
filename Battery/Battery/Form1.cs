@@ -67,18 +67,21 @@ namespace Battery
                     Remainig_label.Invoke(new Action<string>((s) => Remainig_label.Text = s), "Бесконечность не предел");
                 }
                 else
-                {   
-                    
-                    if (!change)
-                    {
-                        Process.Start("Battery.bat", value.Text);
-                        change = !change;
-                    }
+                {
+
+                    /* if (!change)
+                       {
+                           Process.Start("Battery.bat", value.Text);
+                           change = !change;
+                       }*/
+                    Process.Start("Battery.bat", value.Text);
+
                     Battery_Status_label.Invoke(new Action<string>((s) => Battery_Status_label.Text = s), "Running on batery");
                     double percent = Math.Round(powerStatus.BatteryLifePercent * 100);
                     Battery_lvl_lable.Invoke(new Action<string>((s) => Battery_lvl_lable.Text = s), percent.ToString()+'%');
                     double time = powerStatus.BatteryLifeRemaining/60;
                     Remainig_label.Invoke(new Action<string>((s) => Remainig_label.Text = s), time.ToString()+ " минут");
+                    Thread.Sleep(5000);
 
                 }
             }
